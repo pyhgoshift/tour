@@ -329,6 +329,30 @@
       margin-right: 8px;
     }
 
+    .record-card {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 16px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .record-card img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      display: block;
+    }
+
+    .record-date {
+      color: var(--brand);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
     footer {
       color: var(--muted);
       max-width: 1120px;
@@ -343,6 +367,7 @@
       section { padding: 16px; }
       .hero-main { padding: 20px; }
       .phrase-row { grid-template-columns: 1fr; }
+      .record-card { grid-template-columns: 1fr; }
       button.copy { width: 100%; }
     }
   </style>
@@ -356,6 +381,7 @@
       <a class="nav-link" href="#day3">3일차</a>
       <a class="nav-link" href="#day4">4일차</a>
       <a class="nav-link" href="#phrases">중국어 문구</a>
+      <a class="nav-link" href="#records">여행 기록</a>
       <a class="nav-link" href="#checklist">확인 목록</a>
     </div>
   </nav>
@@ -513,6 +539,20 @@
         <li>7월 14일 천산 입장권/케이블카 운영 여부</li>
         <li>7월 15일 06:00 디디/택시 공항 이동</li>
       </ul>
+    </section>
+
+    <section id="records">
+      <h2>여행 기록</h2>
+      <p class="section-lead">여행 전 준비부터 현장 사진까지 날짜별로 남기는 기록입니다.</p>
+      <article class="record-card">
+        <img src="records/2026-07-11-trip-planning.jpg" alt="노트북 앞에서 선양 여행 계획을 정리한 기념 사진">
+        <div>
+          <div class="record-date">2026-07-11</div>
+          <h3>여행계획 기념</h3>
+          <p>여행 출발 전, 선양 1-4일차 계획을 노트북 앞에서 정리한 장면입니다. 항공권과 호텔 정보를 바탕으로 서탑, 본계수동, 선양고궁, 천산, 야시장, 귀국 공항 이동까지 하나의 웹페이지로 묶은 준비의 순간입니다.</p>
+          <p>이 사진은 이번 여행이 단순한 일정표가 아니라, 현장에서 바로 꺼내 볼 수 있는 여행 도우미로 완성되기 시작한 기념 기록입니다.</p>
+        </div>
+      </article>
     </section>
   </main>
 
