@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>선양 1-4일차 여행 카드</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f4ef;
+      --panel: #ffffff;
+      --ink: #171717;
+      --muted: #66615a;
+      --line: #ded7cb;
+      --brand: #b33a28;
+      --brand-2: #225c63;
+      --accent: #d89a2b;
+      --soft: #f1e5d4;
+      --ok: #2f6f4e;
+      --shadow: 0 12px 30px rgba(32, 24, 16, .08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 244, 239, .92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .brand {
+      flex: 0 0 auto;
+      font-weight: 800;
+      color: var(--brand);
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      flex: 0 0 auto;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 14px;
+      background: var(--panel);
+      color: var(--muted);
+    }
+
+    header {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 16px 12px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-main, .hero-side, section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 26px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -70px;
+      width: 280px;
+      height: 210px;
+      background:
+        linear-gradient(135deg, transparent 42%, rgba(34,92,99,.17) 42% 48%, transparent 48%),
+        linear-gradient(45deg, transparent 44%, rgba(179,58,40,.17) 44% 50%, transparent 50%),
+        linear-gradient(160deg, rgba(216,154,43,.22), rgba(34,92,99,.12));
+      clip-path: polygon(9% 100%, 36% 35%, 51% 65%, 66% 20%, 96% 100%);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(255,255,255,.78);
+    }
+
+    .quick b {
+      display: block;
+      font-size: 13px;
+      color: var(--brand-2);
+      margin-bottom: 4px;
+    }
+
+    .quick span {
+      font-size: 15px;
+    }
+
+    .hero-side {
+      padding: 18px;
+    }
+
+    .route-map {
+      display: grid;
+      gap: 10px;
+    }
+
+    .route-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .route-row:last-child { border-bottom: 0; }
+
+    .day-badge {
+      background: var(--brand);
+      color: #fff;
+      border-radius: 8px;
+      padding: 5px 7px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 16px 50px;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+      color: var(--brand-2);
+    }
+
+    .section-lead {
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+
+    .notice {
+      border-left: 5px solid var(--accent);
+      background: #fff7e7;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 700px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 15px;
+    }
+
+    th {
+      background: var(--soft);
+      color: #33261d;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--brand-2);
+    }
+
+    .phrase {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .phrase-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfaf7;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #1d3639;
+    }
+
+    button.copy {
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: var(--brand-2);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0;
+      margin: 14px 0 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #fff;
+    }
+
+    .checklist li::before {
+      content: "□";
+      color: var(--ok);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    footer {
+      color: var(--muted);
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px 32px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; }
+      .quick-grid, .cards, .checklist { grid-template-columns: 1fr; }
+      section { padding: 16px; }
+      .hero-main { padding: 20px; }
+      .phrase-row { grid-template-columns: 1fr; }
+      button.copy { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="일정 이동">
+    <div class="topbar-inner">
+      <div class="brand">선양 여행카드</div>
+      <a class="nav-link" href="#day1">1일차</a>
+      <a class="nav-link" href="#day2">2일차</a>
+      <a class="nav-link" href="#day3">3일차</a>
+      <a class="nav-link" href="#day4">4일차</a>
+      <a class="nav-link" href="#phrases">중국어 문구</a>
+      <a class="nav-link" href="#checklist">확인 목록</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div class="hero-main">
+        <div>
+          <h1>선양 1-4일차<br>최종 여행 카드</h1>
+          <p class="subtitle">도착, 서탑, 본계수동, 선양고궁, 천산, 야시장, 마사지, 귀국 공항 이동까지 한 화면에서 따라가는 실전 일정표.</p>
+        </div>
+        <div class="quick-grid">
+          <div class="quick"><b>여행 기간</b><span>2026.07.12 - 07.15</span></div>
+          <div class="quick"><b>항공</b><span>CZ652 / CZ681</span></div>
+          <div class="quick"><b>귀국</b><span>7/15 09:00 선양 출발</span></div>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <h2>핵심 동선</h2>
+        <div class="route-map">
+          <div class="route-row"><div class="day-badge">1일차</div><div>공항 -> 호텔 -> 서탑 西塔街 -> 마사지</div></div>
+          <div class="route-row"><div class="day-badge">2일차</div><div>본계수동 本溪水洞 -> 小市羊汤 -> 선양고궁 沈阳故宫</div></div>
+          <div class="route-row"><div class="day-badge">3일차</div><div>천산 千山 -> 彩电塔夜市 또는 中街 -> 마사지</div></div>
+          <div class="route-row"><div class="day-badge">4일차</div><div>호텔 06:00 출발 -> 桃仙机场T3 -> 09:00 귀국</div></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>기본 정보</h2>
+      <div class="cards">
+        <div class="mini-card"><strong>호텔</strong>如家精选酒店(沈阳火车站东广场地铁站店)<br>沈阳市和平区胜利北街104号<br>+86-24-23471777</div>
+        <div class="mini-card"><strong>항공</strong>7/12 CZ652 인천 11:45 -> 선양 12:45<br>7/15 CZ681 선양 09:00 -> 인천 11:45</div>
+      </div>
+      <div class="notice">호텔 자료상 기존 예약은 7월 14일 체크아웃입니다. 마지막 밤도 같은 호텔에서 자려면 <b>7월 14일-15일 1박 연장</b>을 반드시 확인하세요.</div>
+    </section>
+
+    <section id="day1">
+      <h2>1일차: 7월 12일, 도착 + 서탑</h2>
+      <p class="section-lead">입국, 호텔 체크인, 서탑에서 저녁 식사와 산책, 첫 마사지.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>시간</th><th>일정</th><th>이동/비용</th><th>설명</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>인천공항 도착</td><td>-</td><td>CZ652 체크인</td></tr>
+            <tr><td>11:45</td><td>인천 출발</td><td>CZ652</td><td>선양행</td></tr>
+            <tr><td>12:45</td><td>선양 도착</td><td>桃仙机场</td><td>입국심사, 수하물</td></tr>
+            <tr><td>13:30</td><td>공항 정리</td><td>-</td><td>eSIM 켜기, 데이터 로밍 켜기</td></tr>
+            <tr><td>14:00</td><td>공항 -> 호텔</td><td>지하철 또는 디디</td><td>짐 많으면 디디 추천</td></tr>
+            <tr><td>15:15</td><td>호텔 체크인</td><td>여권 제시</td><td>주소: 胜利北街104号</td></tr>
+            <tr><td>17:10</td><td>호텔 -> 서탑</td><td>디디/택시 15-30위안</td><td>목적지: 西塔街</td></tr>
+            <tr><td>18:00</td><td>저녁 식사</td><td>西塔大冷面 또는 泥炉烤肉</td><td>냉면, 만두, 고기</td></tr>
+            <tr><td>20:40</td><td>마사지 1회차</td><td>서탑 또는 호텔 근처</td><td>발마사지 60분</td></tr>
+            <tr><td>22:00</td><td>호텔 복귀</td><td>디디/택시</td><td>다음날 본계수동 준비</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>공항 -> 호텔 지하철</h3>
+      <div class="phrase-row"><code>桃仙机场站 -> 2호선 -> 青年大街站 -> 1호선 환승 -> 沈阳站 -> 호텔</code><button class="copy" data-copy="桃仙机场站 -> 青年大街站 -> 沈阳站">복사</button></div>
+    </section>
+
+    <section id="day2">
+      <h2>2일차: 7월 13일, 본계수동 + 선양고궁</h2>
+      <p class="section-lead">오전 본계수동, 점심 小市羊汤, 오후 선양고궁. 시간이 늦으면 고궁 외부와 중가/老北市로 전환.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>시간</th><th>일정</th><th>이동/비용</th><th>설명</th></tr></thead>
+          <tbody>
+            <tr><td>06:20</td><td>기상</td><td>호텔</td><td>여권, 긴팔, 물 준비</td></tr>
+            <tr><td>07:00</td><td>조식</td><td>호텔 B1</td><td>조식 07:00-10:00</td></tr>
+            <tr><td>08:00</td><td>선양 -> 본계</td><td>기차 20-30위안대</td><td>목적지: 本溪站</td></tr>
+            <tr><td>09:00</td><td>본계역 -> 본계수동</td><td>택시 60-90위안</td><td>40-45분</td></tr>
+            <tr><td>10:10</td><td>동굴 관람</td><td>-</td><td>긴팔 착용, 배 관람</td></tr>
+            <tr><td>12:10</td><td>小市羊汤 이동</td><td>디디/택시</td><td>검색어: 小市羊汤</td></tr>
+            <tr><td>12:30</td><td>양탕 점심</td><td>小市镇</td><td>羊汤 + 烧饼</td></tr>
+            <tr><td>14:10</td><td>본계 -> 선양</td><td>기차</td><td>선양역행</td></tr>
+            <tr><td>15:30</td><td>선양고궁 이동</td><td>디디/지하철</td><td>목적지: 沈阳故宫</td></tr>
+            <tr><td>15:50</td><td>선양고궁</td><td>입장 가능 시 내부</td><td>늦으면 외부 관람</td></tr>
+            <tr><td>18:30</td><td>저녁/간식</td><td>중가 또는 老北市</td><td>가볍게</td></tr>
+            <tr><td>20:30</td><td>마사지 2회차</td><td>호텔 근처</td><td>발마사지 60분</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="day3">
+      <h2>3일차: 7월 14일, 천산 + 야시장</h2>
+      <p class="section-lead">천산 케이블카와 전망을 보고, 선양 복귀 후 彩电塔夜市 또는 中街. 마지막 밤도 같은 호텔 숙박.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>시간</th><th>일정</th><th>이동/비용</th><th>설명</th></tr></thead>
+          <tbody>
+            <tr><td>06:00</td><td>기상</td><td>호텔</td><td>작은 가방 준비</td></tr>
+            <tr><td>07:00</td><td>조식</td><td>호텔 B1</td><td>조식 후 출발</td></tr>
+            <tr><td>08:20</td><td>선양 -> 안산서</td><td>기차 약 30위안대</td><td>목적지: 鞍山西站</td></tr>
+            <tr><td>09:20</td><td>안산서역 -> 천산</td><td>택시 40-70위안</td><td>목적지: 千山风景区正门</td></tr>
+            <tr><td>10:00</td><td>천산 도착</td><td>千山</td><td>입장권/케이블카 확인</td></tr>
+            <tr><td>11:00</td><td>케이블카 탑승</td><td>왕복권 추천</td><td>索道往返票</td></tr>
+            <tr><td>11:30</td><td>전망/산책</td><td>산 위</td><td>무리하지 않기</td></tr>
+            <tr><td>15:30</td><td>안산서 -> 선양</td><td>기차</td><td>선양역행</td></tr>
+            <tr><td>17:00</td><td>호텔 휴식</td><td>호텔</td><td>샤워, 충전</td></tr>
+            <tr><td>18:00</td><td>야시장 이동</td><td>디디/택시</td><td>목적지: 彩电塔夜市</td></tr>
+            <tr><td>20:40</td><td>마사지 3회차</td><td>호텔 근처</td><td>발마사지 60분</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="day4">
+      <h2>4일차: 7월 15일, 공항 이동 + 귀국</h2>
+      <p class="section-lead">06:00 디디/택시로 타오셴공항 T3 이동. 09:00 국제선 탑승.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>시간</th><th>일정</th><th>이동/비용</th><th>설명</th></tr></thead>
+          <tbody>
+            <tr><td>05:20</td><td>기상</td><td>호텔</td><td>세면, 충전기 뽑기</td></tr>
+            <tr><td>05:45</td><td>체크아웃</td><td>프런트</td><td>카드 반납</td></tr>
+            <tr><td>05:50</td><td>디디 호출</td><td>호텔 로비</td><td>목적지 입력</td></tr>
+            <tr><td>06:00</td><td>호텔 출발</td><td>디디/택시 90-150위안</td><td>공항까지 50-70분</td></tr>
+            <tr><td>06:50</td><td>공항 도착 목표</td><td>T3</td><td>국제선 출발층</td></tr>
+            <tr><td>07:00</td><td>체크인/수하물</td><td>CZ681</td><td>여권 제시</td></tr>
+            <tr><td>09:00</td><td>선양 출발</td><td>CZ681</td><td>인천행</td></tr>
+            <tr><td>11:45</td><td>인천 도착</td><td>T1</td><td>귀국</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="phrases">
+      <h2>중국어 문구</h2>
+      <p class="section-lead">버튼을 누르면 문구가 복사됩니다.</p>
+      <div class="phrase">
+        <div class="phrase-row"><code>我想续住一晚，住到7月15日早上退房。还有房间吗？</code><button class="copy" data-copy="我想续住一晚，住到7月15日早上退房。还有房间吗？">복사</button></div>
+        <div class="phrase-row"><code>请去西塔街。到西塔大冷面附近下车就可以。</code><button class="copy" data-copy="请去西塔街。到西塔大冷面附近下车就可以。">복사</button></div>
+        <div class="phrase-row"><code>请去本溪水洞景区。到了景区入口请告诉我。</code><button class="copy" data-copy="请去本溪水洞景区。到了景区入口请告诉我。">복사</button></div>
+        <div class="phrase-row"><code>一碗羊汤，一个烧饼。不要太辣。</code><button class="copy" data-copy="一碗羊汤，一个烧饼。不要太辣。">복사</button></div>
+        <div class="phrase-row"><code>不要香菜。</code><button class="copy" data-copy="不要香菜。">복사</button></div>
+        <div class="phrase-row"><code>不要羊杂，只要羊肉。</code><button class="copy" data-copy="不要羊杂，只要羊肉。">복사</button></div>
+        <div class="phrase-row"><code>请去千山风景区正门。到了游客中心附近请告诉我。</code><button class="copy" data-copy="请去千山风景区正门。到了游客中心附近请告诉我。">복사</button></div>
+        <div class="phrase-row"><code>今天哪个索道开放？我要买索道往返票。</code><button class="copy" data-copy="今天哪个索道开放？我要买索道往返票。">복사</button></div>
+        <div class="phrase-row"><code>请去彩电塔夜市。</code><button class="copy" data-copy="请去彩电塔夜市。">복사</button></div>
+        <div class="phrase-row"><code>请去沈阳桃仙国际机场T3航站楼。我的航班是早上九点的国际航班，请走最快的路线。</code><button class="copy" data-copy="请去沈阳桃仙国际机场T3航站楼。我的航班是早上九点的国际航班，请走最快的路线。">복사</button></div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <h2>최종 예약/확인 목록</h2>
+      <ul class="checklist">
+        <li>호텔 7월 14일-15일 1박 연장</li>
+        <li>7월 13일 선양 -> 본계 왕복 열차</li>
+        <li>7월 13일 본계수동 입장권</li>
+        <li>7월 14일 선양 -> 안산서 왕복 열차</li>
+        <li>7월 14일 천산 입장권/케이블카 운영 여부</li>
+        <li>7월 15일 06:00 디디/택시 공항 이동</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>이 페이지는 로컬 여행카드 파일을 바탕으로 만든 정적 웹페이지입니다. 항공, 열차, 입장권, 영업시간은 현지 앱에서 전날 재확인하세요.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".copy").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const text = button.getAttribute("data-copy") || "";
+        try {
+          await navigator.clipboard.writeText(text);
+          const old = button.textContent;
+          button.textContent = "복사됨";
+          setTimeout(() => { button.textContent = old; }, 1200);
+        } catch {
+          alert(text);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
